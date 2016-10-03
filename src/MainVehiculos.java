@@ -1,73 +1,48 @@
 public class MainVehiculos {
-
     public static void main(String[] args) {
-
-        Coche Jaguar= new Coche (&quot;1234ENG&quot;,&quot;Jaguar&quot;,&quot;TheRoadIsYours&quot;, 200000);
-
-        Coche BMW= new Coche (&quot;9065AME&quot;,&quot;BMW&quot;,&quot;LoveAtFirstDrive&quot;, 60000);
-
-        Coche Lexus= new Coche (&quot;5638DDD&quot;,&quot;Lexus&quot;,&quot;FastAndGlorious&quot;, 120000);
-
-        Coche Austin= new Coche (&quot;3564GER&quot;,&quot;Austin&quot;,&quot;BeLikeBond&quot;, 150000);
-
-        Coche RomeoAlfaJulietta= new Coche (&quot;4749JAV&quot;,&quot;RomeoAlfaJulietta&quot;,&quot;DramaMasterpiece&quot;, 12000);
+        Coche Jaguar= new Coche ("1234ENG","Jaguar","TheRoadIsYours", 200000);
+        Coche BMW= new Coche ("9065AME","BMW","LoveAtFirstDrive", 60000);
+        Coche Lexus= new Coche ("5638DDD","Lexus","FastAndGlorious", 120000);
+        Coche Austin= new Coche ("3564GER","Austin","BeLikeBond", 150000);
+        Coche RomeoAlfaJulietta= new Coche ("4749JAV","RomeoAlfaJulietta","DramaMasterpiece", 12000);
 
         RegistroVehiculos registro = new RegistroVehiculos();
-
         registro.registrarVehiculo(Jaguar);
-
         registro.registrarVehiculo(BMW);
-
         registro.registrarVehiculo(Lexus);
-
         registro.registrarVehiculo(Austin);
-
         registro.registrarVehiculo(RomeoAlfaJulietta);
-
-// Debes comprobar que el HashSet no permite duplicados
-
+        // Debes comprobar que el HashSet no permite duplicados
         registro.registrarVehiculo(RomeoAlfaJulietta);
 
         System.out.println(registro.obtenerTodos());
 
         registro
-
-                .obtenerVehiculo(&quot;4749JAV&quot;)
-
-.ifPresent(
-
-                coche -&gt; System.out.println(&quot;Coche con matricula 4749JAV: &quot; + coche)
-
-);
-
-        registro
-
-                .obtenerVehiculosMarca(&quot;Lexus&quot;)
-
-// esto es un bucle tradicional expresado con Java 8
-
-.forEach(
-
-                coche -&gt; System.out.println(coche)
-
-);
-
-        registro
-
-                .obtenerVehiculoPrecioMax()
-
-// esta expresión es equivalente a verificar diferente de null con Java 8
-
+                .obtenerVehiculo("4749JAV")
                 .ifPresent(
-
-                        coche -&gt; System.out.println(&quot;Coche Max precio: &quot; + coche)
-
-);
-
-        System.out.println(&quot;Eliminando coche con matricula 1234ENG&quot;);
+                        coche -> System.out.println("Coche con matricula 4749JAV: " + coche)
+                );
 
         registro
+                .obtenerVehiculosMarca("Lexus")
+                // esto es un bucle tradicional expresado con Java 8
+                .forEach(
+                        coche -> System.out.println(coche)
+                );
 
-                .eliminarVehiculo(&quot;1234ENG&quot;);
+        registro
+                .obtenerVehiculoPrecioMax()
+                // esta expresión es equivalente a verificar diferente de null con Java 8
+                .ifPresent(
+                        coche -> System.out.println("Coche Max precio: " + coche)
+                );
+
+        System.out.println("Eliminando coche con matricula 1234ENG");
+        registro
+                .eliminarVehiculo("1234ENG");
 
         System.out.println(registro.obtenerTodos());
+
+
+    }
+}
