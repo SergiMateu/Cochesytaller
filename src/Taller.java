@@ -12,9 +12,16 @@ public class Taller {
 
             new TreeMap<>(Comparator.comparing(Persona::getNumSS));
 
-    public Coche registrarReparacion(Persona persona, Coche coche){
+    public Coche registrarReparacion(Persona persona, Coche coche)
 
+    {
+        if(!reparaciones.containsKey(persona.getDni()) && (!reparaciones.containsKey(coche.getMatricula()))) {
+
+            reparaciones.put(persona, coche);
+        }
+        return null;
     }
+
 
     public Coche obtenerCoche(Persona persona){
 
