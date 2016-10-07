@@ -8,26 +8,27 @@ import java.util.TreeMap;
 
 public class Taller {
 
+    //en treemap primer valor es la key(Persona en aquest cas) y el segon es value(coche)
     private Map<Persona, Coche> reparaciones =
 
             new TreeMap<>(Comparator.comparing(Persona::getNumSS));
 
-    public Coche registrarReparacion(Persona persona, Coche coche)
+    public void registrarReparacion(Persona persona, Coche coche) {
 
-    {
-        if(!reparaciones.containsKey(persona.getDni()) && (!reparaciones.containsKey(coche.getMatricula()))) {
+        reparaciones.putIfAbsent(persona, coche);
 
-            reparaciones.put(persona, coche);
-        }
-        return null;
     }
 
 
     public Coche obtenerCoche(Persona persona){
 
+        return reparaciones.get(persona);
     }
 
+
+
     public Set<Persona>obtenerClientes(){
+        return reparaciones.keySet();
 
     }
 
